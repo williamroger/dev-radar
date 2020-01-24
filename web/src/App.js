@@ -1,10 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './global.css';
 import './App.css';
 import './Sidebar.css';
 import './Main.css';
 
 function App() {
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        console.log('lati ', latitude);
+        console.log('long ', longitude);
+      },
+      (err) => {
+        console.log(err);
+      },
+      {
+        timeout: 30000,
+      }
+    );
+  }, []);
+
   return (
     <div id="app">
       <aside>
